@@ -4,6 +4,12 @@ import { redirect } from 'next/navigation'
 import { supabase } from '../utils/supabase/client'
 
 export async function handleRegister(formData) {
+  const { data: { session } } = await supabase.auth.getSession()
+
+ /* if (!session || session.user.role !== 'admin') {
+    throw new Error('Bu işlemi gerçekleştirmek için yetkiniz yok.')
+  }*/
+
   const name = formData.get('name')
   const surname = formData.get('surname')
   const email = formData.get('email')
@@ -20,15 +26,5 @@ export async function handleRegister(formData) {
     throw new Error(signUpError.message)
   }
 
-  const { error: insertError } = await supabase
-    .from('users')
-    .insert([
-      { id: user.id, name, surname, email, role: 'student' }
-    ])
-
-  if (insertError) {
-    throw new Error(insertError.message)
-  }
-
-  redirect('/login')
+  redirect('/')
 }
