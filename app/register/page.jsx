@@ -1,5 +1,10 @@
 import { handleRegister } from '../../actions/registerAction'
 
+//GEÇİCİ SAYFADIR!!!
+
+// BU REGISTER SAYFASI SONRADAN KALDIRILMAYI PLANLANIYOR
+//SADECE ADMİN TARAFINDA KULLANICI EKLENEBİLİR OLACAK 
+//BU YÜZDEN YENİ BİR SAYFAYA TAŞINACAK
 export default function RegisterPage() {
   return (
     <div className="container">

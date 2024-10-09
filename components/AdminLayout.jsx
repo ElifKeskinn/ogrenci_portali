@@ -6,7 +6,6 @@ export default function AdminLayout({ children }) {
             <nav>
                 <ul>
                     <li><Link href="/admin">Admin Paneli</Link></li>
-                    <li><Link href="/admin/add-user">Yeni Kullanıcı Ekle</Link></li>
                     <li><Link href="/">Ana Sayfa</Link></li>
                 </ul>
             </nav>
