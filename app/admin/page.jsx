@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../../utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import AdminLayout from '../../components/AdminLayout'
+import Modal from '../../components/Modal'
 
 export default function AdminPanel() {
   const [users, setUsers] = useState([])
   const router = useRouter()
+  const [isModalOpen, setIsModalOpen] = useState(false) 
+  const [userToDelete, setUserToDelete] = useState(null)
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -37,16 +40,25 @@ export default function AdminPanel() {
     return 'FF'
   }
 
-  const handleDelete = async (id) => {
-    if (confirm('Kullanıcıyı silmek istediğinize emin misiniz?')) {
-      const { error } = await supabase.from('users').delete().eq('id', id)
+  const handleDelete = async () => {
+    if (userToDelete) {
+      const { error } = await supabase.from('users').delete().eq('id', userToDelete)
       if (error) {
         alert(error.message)
       } else {
-        setUsers(users.filter(user => user.id !== id))
+        setUsers(users.filter(user => user.id !== userToDelete))
       }
+      setIsModalOpen(false)
+      setUserToDelete(null) 
     }
   }
+
+
+  const openDeleteModal = (id) => {
+    setUserToDelete(id)
+    setIsModalOpen(true) 
+  }
+
 
   return (
     <>
@@ -72,12 +84,17 @@ export default function AdminPanel() {
               <td>{user.averageGrade}</td> 
               <td>
                 <button onClick={() => router.push(`/admin/users/${user.id}`)}>Düzenle</button>
-                <button onClick={() => handleDelete(user.id)}>Sil</button>
+                <button onClick={() => openDeleteModal(user.id)}>Sil</button> 
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)} 
+        onConfirm={handleDelete} 
+      />
       </>
   )
 }
