@@ -11,16 +11,31 @@ export default function AdminPanel() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const { data, error } = await supabase.from('users').select('*')
+      const { data, error } = await supabase.from('users').select('*').eq('role', 'student') 
       if (error) {
         console.error(error)
       } else {
-        setUsers(data)
+        const usersWithGrades = data.map(user => ({
+          ...user,
+          averageGrade: calculateLetterGrade((user.not1 + user.not2 + user.not3) / 3)
+        }))
+        setUsers(usersWithGrades)
       }
     }
 
     fetchUsers()
   }, [])
+
+  const calculateLetterGrade = (average) => {
+    if (average >= 90) return 'AA'
+    if (average >= 80) return 'AB'
+    if (average >= 70) return 'BB'
+    if (average >= 60) return 'BC'
+    if (average >= 50) return 'CC'
+    if (average >= 40) return 'DC'
+    if (average >= 30) return 'DD'
+    return 'FF'
+  }
 
   const handleDelete = async (id) => {
     if (confirm('Kullanıcıyı silmek istediğinize emin misiniz?')) {
@@ -44,7 +59,7 @@ export default function AdminPanel() {
             <th>Ad</th>
             <th>Soyad</th>
             <th>Email</th>
-            <th>Rol</th>
+            <th>Harf Notu</th> 
             <th>İşlemler</th>
           </tr>
         </thead>
@@ -54,7 +69,7 @@ export default function AdminPanel() {
               <td>{user.name}</td>
               <td>{user.surname}</td>
               <td>{user.email}</td>
-              <td>{user.role}</td>
+              <td>{user.averageGrade}</td> 
               <td>
                 <button onClick={() => router.push(`/admin/users/${user.id}`)}>Düzenle</button>
                 <button onClick={() => handleDelete(user.id)}>Sil</button>
