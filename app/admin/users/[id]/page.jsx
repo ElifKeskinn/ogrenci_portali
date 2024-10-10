@@ -54,6 +54,16 @@ function EditUserForm({ user }) {
         <option value="student">Öğrenci</option>
         <option value="admin">Admin</option>
       </select>
+      
+      <label>Not 1:</label>
+      <input type="text" name="name" defaultValue={user.not1} required />
+
+      <label>Not 2:</label>
+      <input type="text" name="name" defaultValue={user.not2} required />
+     
+      <label>Not 3:</label>
+      <input type="text" name="name" defaultValue={user.not3} required />
+
 
       <button type="submit">Güncelle</button>
     </form>
