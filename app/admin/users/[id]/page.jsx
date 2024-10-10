@@ -50,6 +50,7 @@ function EditUserForm({ user }) {
       <input type="email" name="email" defaultValue={user.email} required />
 
     
+
       <label>Not 1:</label>
       <input type="text" name="not1" defaultValue={user.not1} required />
 
@@ -58,7 +59,6 @@ function EditUserForm({ user }) {
      
       <label>Not 3:</label>
       <input type="text" name="not3" defaultValue={user.not3} required />
-
 
       <button type="submit">Güncelle</button>
     </form>
