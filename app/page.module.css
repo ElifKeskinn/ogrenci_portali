@@ -1,0 +1,119 @@
+.container {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2575fc;
+  }
+  
+  .navLinks {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navLinks li {
+    margin-left: 20px;
+  }
+  
+  .navLinks a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .navLinks a:hover {
+    color: #2575fc;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .header h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .header p {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+  
+  .ctaButton {
+    background-color: #fff;
+    color: #2575fc;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ctaButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .mainContent {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .feature {
+    flex: 1 1 300px;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature:hover {
+    transform: translateY(-10px);
+  }
+  
+  .feature h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #2575fc;
+  }
+  
+  .feature p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  /* Alt Bilgi */
+  .footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  

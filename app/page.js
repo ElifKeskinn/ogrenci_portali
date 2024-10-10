@@ -1,92 +1,72 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { supabase } from '../utils/supabase/client'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { supabase } from '../utils/supabase/client';
+import styles from './page.module.css';
 
 export default function HomePage() {
-  const [user, setUser] = useState(null)
-  const [scores, setScores] = useState([])
-  const router = useRouter()
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { user }, error } = await supabase.auth.getUser()
-      if (error) {
-        console.error(error)
-      } else {
-        if (user) {
-          setUser(user)
-          fetchScores(user.id)
-        } else {
-          router.push('/login')
-        }
-      }
-    }
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
 
-    fetchUser()
-  }, [router])
+    getUser();
 
-  const fetchScores = async (userId) => {
-    const { data, error } = await supabase
-      .from('exam_scores')
-      .select('*')
-      .eq('user_id', userId)
+    const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
 
-    if (error) {
-      console.error(error)
-    } else {
-      setScores(data)
-    }
-  }
-
-  const calculateAverage = () => {
-    if (!scores.length) return 'Not Bulunmamaktadır.'
-    const total = scores.reduce((acc, score) => acc + score.score, 0)
-    const average = total / scores.length
-    if (average >= 90) return 'AA'
-    if (average >= 80) return 'AB'
-    if (average >= 70) return 'BB'
-    if (average >= 60) return 'CC'
-    return 'FF'
-  }
-
-  if (!user) {
-    return <div>Yükleniyor...</div>
-    {/*bu kısım editlenecek direkt
-       login ekranına bağlamayı düşünüyorum
-       ama şimdilik böyle kalsın
-       return kısmını da user giriş yaptıysa olarak yazdım */}
-  }
+    return () => {
+      subscription.subscription.unsubscribe();
+    };
+  }, []);
 
   return (
-    <div className="container">
-      <h1>Ana Sayfa</h1>
-      <h2>Hoşgeldiniz, {user.email}</h2>
-      {scores.length > 0 ? (
-        <div>
-          <h3>Sınav Notlarınız</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Sınav Türü</th>
-                <th>Puan</th>
-              </tr>
-            </thead>
-            <tbody>
-              {scores.map(score => (
-                <tr key={score.id}>
-                  <td>{score.exam_type}</td>
-                  <td>{score.score}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p>Ortalama: {calculateAverage()}</p>
-        </div>
-      ) : (
-        <p>Notlarınız bulunmamaktadır.</p>
-      )}
+    <div className={styles.container}>
+      <nav className={styles.navbar}>
+        <div className={styles.logo}>Öğrenci Portalı</div>
+        <ul className={styles.navLinks}>
+          <li><Link href="/">Ana Sayfa</Link></li>
+          <li><Link href="#">Dersler</Link></li>
+          <li><Link href="#">Notlar</Link></li>
+          <li><Link href="#">İletişim</Link></li>
+          {!user && <li><Link href="/login">Giriş Yap</Link></li>}
+          {!user && <li><Link href="/register">Kayıt Ol</Link></li>}
+          {user && user.role === 'admin' && <li><Link href="/admin">Admin Paneli</Link></li>}
+          {user && <li><Link href="/logout">Çıkış Yap</Link></li>}
+        </ul>
+      </nav>
+
+      <header className={styles.header}>
+        <h1>Öğrenci Portalına Hoş Geldiniz</h1>
+        <p>Tüm öğrenci kaynaklarına kolayca erişin.</p>
+        <button className={styles.ctaButton}>Hemen Başla</button>
+      </header>
+
+      <main className={styles.mainContent}>
+        <section className={styles.features}>
+          <div className={styles.feature}>
+            <h2>Dersler</h2>
+            <p>Tüm ders materyallerinize tek bir yerden ulaşın.</p>
+          </div>
+          <div className={styles.feature}>
+            <h2>Notlar</h2>
+            <p>Akademik ilerlemenizi kolayca takip edin.</p>
+          </div>
+          <div className={styles.feature}>
+            <h2>Topluluk</h2>
+            <p>Diğer öğrenciler ve öğretim üyeleriyle bağlantı kurun.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer className={styles.footer}>
+        <p>© 2023 Öğrenci Portalı. Tüm hakları saklıdır.</p>
+      </footer>
     </div>
-  )
+  );
 }
