@@ -49,12 +49,7 @@ function EditUserForm({ user }) {
       <label>Email:</label>
       <input type="email" name="email" defaultValue={user.email} required />
 
-      <label>Rol:</label>
-      <select name="role" defaultValue={user.role}>
-        <option value="student">Öğrenci</option>
-        <option value="admin">Admin</option>
-      </select>
-
+    
       <label>Not 1:</label>
       <input type="text" name="not1" defaultValue={user.not1} required />
 
