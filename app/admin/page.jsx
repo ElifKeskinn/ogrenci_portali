@@ -5,12 +5,14 @@ import { supabase } from '../../utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import AdminLayout from '../../components/AdminLayout'
 import Modal from '../../components/Modal'
+import AddStudentModal from '@/components/AddStudentModal'
 
 export default function AdminPanel() {
   const [users, setUsers] = useState([])
   const router = useRouter()
   const [isModalOpen, setIsModalOpen] = useState(false) 
   const [userToDelete, setUserToDelete] = useState(null)
+  const [isAddStudentModalOpen, setIsAddStudentModalOpen] = useState(false)
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -60,11 +62,37 @@ export default function AdminPanel() {
   }
 
 
+  const handleAddUser = async (newUserData) => {
+    const { data, error } = await supabase.from('users').insert([{
+      ...newUserData,
+      role: 'student', 
+      created_at: new Date(),
+    }]);
+
+    if (error) {
+      console.error('Error adding user:', error.message);
+      return; 
+    }
+
+    if (data && data.length > 0) {
+      const newUser = data[0];
+      setUsers([...users, {
+        ...newUser,
+        averageGrade: calculateLetterGrade((newUserData.not1 + newUserData.not2 + newUserData.not3) / 3),
+      }]);
+    } else {
+      console.error('No data returned from the insert operation.');
+    }
+
+    setIsAddStudentModalOpen(false);
+  };
+
+
   return (
     <>
     <AdminLayout/>
       <h1>Admin Paneli</h1>
-      <button onClick={() => router.push('/admin/add-user')}>Yeni Kullanıcı Ekle</button>
+      <button onClick={() => setIsAddStudentModalOpen(true)}>Yeni Öğrenci Ekle</button>
       <table>
         <thead>
           <tr>
@@ -95,6 +123,12 @@ export default function AdminPanel() {
         onClose={() => setIsModalOpen(false)} 
         onConfirm={handleDelete} 
       />
+
+      <AddStudentModal
+        isOpen={isAddStudentModalOpen}
+       onClose={() => setIsAddStudentModalOpen(false)}
+       onSubmit={handleAddUser} 
+     />
       </>
   )
 }
