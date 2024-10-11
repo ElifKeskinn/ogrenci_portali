@@ -6,11 +6,10 @@ import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   return (
     <div className="container">
-      <h1>Giriş Yap</h1>
+      <h1 className="loginTitle">Giriş Yap</h1>
       <LoginForm />
     </div>
-  );
-}
+  );}
 
 function LoginForm() {
   const [error, setError] = useState(null); 
@@ -36,16 +35,16 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Email:</label>
-      <input type="email" name="email" required />
-
-      <label>Şifre:</label>
-      <input type="password" name="password" required />
-
-      {error && <p style={{ color: 'red' }}>{error}</p>} 
-
-      <button type="submit">Giriş Yap</button>
+    <form className="loginForm" onSubmit={handleSubmit}>
+      <label className="loginLabel">Email:</label>
+      <input className="loginInput" type="email" name="email" required />
+  
+      <label className="loginLabel">Şifre:</label>
+      <input className="loginInput" type="password" name="password" required />
+  
+      {error && <p className="errorMessage">{error}</p>} 
+  
+      <button className="loginButton" type="submit">Giriş Yap</button>
     </form>
   );
 }

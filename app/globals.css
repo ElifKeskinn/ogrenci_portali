@@ -1,26 +1,387 @@
-.AddStudentModal-overlay {
+/* Edit User Form */
+.editUserForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formLabel {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.formInput {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.submitButton {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #1a5bb8;
+}
+
+/* Admin Panel */
+.adminTitle {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.addStudentButton {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.addStudentButton:hover {
+    background-color: #1a5bb8;
+}
+
+.adminTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.adminTable th,
+.adminTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.adminTable th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.editButton,
+.deleteButton {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+    background-color: #1a5bb8;
+}
+
+.deleteButton {
+    background-color: #e74c3c;
+}
+
+.deleteButton:hover {
+    background-color: #c0392b;
+}
+
+/* Login Page */
+.loginTitle {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Login Form */
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loginLabel {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.loginInput {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.errorMessage {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.loginButton {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+    background-color: #1a5bb8;
+}
+
+/* Add Student Modal */
+.addStudentModalOverlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-.AddStudentModal {
-    background-color: white;
-    padding: 20px;
+.addStudentModalContent {
+    background-color: #fff;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    max-width: 100%;
-    z-index: 1001;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-button {
+.addStudentModalTitle {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.addStudentForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.addStudentLabel {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.addStudentInput {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.addStudentSubmitButton,
+.addStudentCloseButton {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     margin-top: 10px;
+}
+
+.addStudentSubmitButton:hover {
+    background-color: #1a5bb8;
+}
+
+.addStudentCloseButton {
+    background-color: #e74c3c;
+}
+
+.addStudentCloseButton:hover {
+    background-color: #c0392b;
+}
+
+/* Admin Layout */
+.adminLayout {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.adminNavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.adminNavLinks {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.adminNavLinks li {
+    margin-left: 20px;
+}
+
+.adminNavLink {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.adminNavLink:hover {
+    color: #2575fc;
+}
+
+.logoutButton {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+    background-color: #c0392b;
+}
+
+/* Modal */
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.modalTitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.confirmButton,
+.cancelButton {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.confirmButton:hover {
+    background-color: #1a5bb8;
+}
+
+.cancelButton {
+    background-color: #e74c3c;
+}
+
+.cancelButton:hover {
+    background-color: #c0392b;
+}
+
+/* Genel Buton Stilleri */
+button {
+    font-family: 'Roboto', sans-serif;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Input Odaklanma Stilleri */
+input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .navbar,
+    .adminNavbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navLinks,
+    .adminNavLinks {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navLinks li,
+    .adminNavLinks li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .features {
+        flex-direction: column;
+    }
+
+    .feature {
+        max-width: 100%;
+    }
 }

@@ -39,28 +39,25 @@ export default function EditUserPage({ params }) {
 
 function EditUserForm({ user }) {
   return (
-    <form action={(formData) => handleEditUser(formData, user.id)}>
-      <label>Ad:</label>
-      <input type="text" name="name" defaultValue={user.name} required />
-
-      <label>Soyad:</label>
-      <input type="text" name="surname" defaultValue={user.surname} required />
-
-      <label>Email:</label>
-      <input type="email" name="email" defaultValue={user.email} required />
-
-    
-
-      <label>Not 1:</label>
-      <input type="text" name="not1" defaultValue={user.not1} required />
-
-      <label>Not 2:</label>
-      <input type="text" name="not2" defaultValue={user.not2} required />
-     
-      <label>Not 3:</label>
-      <input type="text" name="not3" defaultValue={user.not3} required />
-
-      <button type="submit">Güncelle</button>
+    <form className="editUserForm" onSubmit={(formData) => handleEditUser(formData, user.id)}>
+      <label className="formLabel">Ad:</label>
+      <input className="formInput" type="text" name="name" defaultValue={user.name} required />
+  
+      <label className="formLabel">Soyad:</label>
+      <input className="formInput" type="text" name="surname" defaultValue={user.surname} required />
+  
+      <label className="formLabel">Email:</label>
+      <input className="formInput" type="email" name="email" defaultValue={user.email} required />
+  
+      <label className="formLabel">Not 1:</label>
+      <input className="formInput" type="text" name="not1" defaultValue={user.not1} required />
+  
+      <label className="formLabel">Not 2:</label>
+      <input className="formInput" type="text" name="not2" defaultValue={user.not2} required />
+  
+      <label className="formLabel">Not 3:</label>
+      <input className="formInput" type="text" name="not3" defaultValue={user.not3} required />
+  
+      <button className="submitButton" type="submit">Güncelle</button>
     </form>
-  )
-}
+  )}

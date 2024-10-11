@@ -25,33 +25,33 @@ export default function AddStudentModal({ isOpen, onClose, onSubmit }) {
   if (!isOpen) return null;
 
   return (
-    <div className="AddStudentModal-overlay">
-      <div className="AddStudentModal">
-        <h2>Yeni Öğrenci Ekle</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Ad</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-
-          <label>Soyad</label>
-          <input type="text" name="surname" value={formData.surname} onChange={handleChange} required />
-
-          <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-
-          <label>Şifre</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-
-          <label>Not 1</label>
-          <input type="number" name="not1" value={formData.not1} onChange={handleChange} />
-
-          <label>Not 2</label>
-          <input type="number" name="not2" value={formData.not2} onChange={handleChange} />
-
-          <label>Not 3</label>
-          <input type="number" name="not3" value={formData.not3} onChange={handleChange} />
-
-          <button type="submit">Ekle</button>
-          <button type="button" onClick={onClose}>Kapat</button>
+    <div className="addStudentModalOverlay">
+      <div className="addStudentModalContent">
+        <h2 className="addStudentModalTitle">Yeni Öğrenci Ekle</h2>
+        <form className="addStudentForm" onSubmit={handleSubmit}>
+          <label className="addStudentLabel">Ad</label>
+          <input className="addStudentInput" type="text" name="name" value={formData.name} onChange={handleChange} required />
+  
+          <label className="addStudentLabel">Soyad</label>
+          <input className="addStudentInput" type="text" name="surname" value={formData.surname} onChange={handleChange} required />
+  
+          <label className="addStudentLabel">Email</label>
+          <input className="addStudentInput" type="email" name="email" value={formData.email} onChange={handleChange} required />
+  
+          <label className="addStudentLabel">Şifre</label>
+          <input className="addStudentInput" type="password" name="password" value={formData.password} onChange={handleChange} required />
+  
+          <label className="addStudentLabel">Not 1</label>
+          <input className="addStudentInput" type="number" name="not1" value={formData.not1} onChange={handleChange} />
+  
+          <label className="addStudentLabel">Not 2</label>
+          <input className="addStudentInput" type="number" name="not2" value={formData.not2} onChange={handleChange} />
+  
+          <label className="addStudentLabel">Not 3</label>
+          <input className="addStudentInput" type="number" name="not3" value={formData.not3} onChange={handleChange} />
+  
+          <button className="addStudentSubmitButton" type="submit">Ekle</button>
+          <button className="addStudentCloseButton" type="button" onClick={onClose}>Kapat</button>
         </form>
       </div>
     </div>

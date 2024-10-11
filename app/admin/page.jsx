@@ -90,10 +90,10 @@ export default function AdminPanel() {
 
   return (
     <>
-    <AdminLayout/>
-      <h1>Admin Paneli</h1>
-      <button onClick={() => setIsAddStudentModalOpen(true)}>Yeni Öğrenci Ekle</button>
-      <table>
+      <AdminLayout />
+      <h1 className="adminTitle">Admin Paneli</h1>
+      <button className="addStudentButton" onClick={() => setIsAddStudentModalOpen(true)}>Yeni Öğrenci Ekle</button>
+      <table className="adminTable">
         <thead>
           <tr>
             <th>Ad</th>
@@ -111,8 +111,8 @@ export default function AdminPanel() {
               <td>{user.email}</td>
               <td>{user.averageGrade}</td> 
               <td>
-                <button onClick={() => router.push(`/admin/users/${user.id}`)}>Düzenle</button>
-                <button onClick={() => openDeleteModal(user.id)}>Sil</button> 
+                <button className="editButton" onClick={() => router.push(`/admin/users/${user.id}`)}>Düzenle</button>
+                <button className="deleteButton" onClick={() => openDeleteModal(user.id)}>Sil</button> 
               </td>
             </tr>
           ))}
@@ -123,12 +123,12 @@ export default function AdminPanel() {
         onClose={() => setIsModalOpen(false)} 
         onConfirm={handleDelete} 
       />
-
+  
       <AddStudentModal
         isOpen={isAddStudentModalOpen}
-       onClose={() => setIsAddStudentModalOpen(false)}
-       onSubmit={handleAddUser} 
-     />
-      </>
+        onClose={() => setIsAddStudentModalOpen(false)}
+        onSubmit={handleAddUser} 
+      />
+    </>
   )
 }
