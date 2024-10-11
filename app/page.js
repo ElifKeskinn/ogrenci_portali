@@ -35,7 +35,7 @@ export default function HomePage() {
           <li><Link href="#">Notlar</Link></li>
           <li><Link href="#">İletişim</Link></li>
           {!user && <li><Link href="/login">Giriş Yap</Link></li>}
-          {!user && <li><Link href="/register">Kayıt Ol</Link></li>}
+          {!user && <li><Link href="/">Kayıt Ol</Link></li>} {/*register sayfası kaldırıldı */}
           {user && user.role === 'admin' && <li><Link href="/admin">Admin Paneli</Link></li>}
           {user && <li><Link href="/logout">Çıkış Yap</Link></li>}
         </ul>
