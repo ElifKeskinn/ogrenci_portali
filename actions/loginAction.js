@@ -1,28 +1,33 @@
-'use server';
+"use server";
 
-import { supabase } from '../utils/supabase/client';
-import { redirect } from 'next/navigation';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+
+const defaultUserMetadata = {
+  role: 'user',
+  firstName: '',
+  lastName: '',
+  profilePhoto: '',
+  bio: '',
+  birthDate: '',
+};
 
 export async function handleLogin(formData) {
-  const email = formData.get('email');
-  const password = formData.get('password');
+  const supabase = createServerComponentClient({ cookies });
 
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      console.error('Supabase login error:', error.message);
-      throw new Error('Invalid login credentials');
-    }
-
-    console.log('Login successful:', data);
-    redirect('/'); 
-    
-  } catch (err) {
-    console.error('Login sırasında hata:', err);
-    throw new Error('Sunucu tarafında bir hata oluştu.');
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.get('email'),
+    password: formData.get('password'),
   }
+
+);
+
+  if (error) {
+    console.error('Error logging in:', error);
+    return { success: false, message: error.message };
+  } else {
+    return { success: true };
+  
+  }
+  
 }

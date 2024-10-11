@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { handleLogin } from '../../actions/loginAction';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   return (
@@ -13,6 +14,7 @@ export default function LoginPage() {
 
 function LoginForm() {
   const [error, setError] = useState(null); 
+  const router = useRouter();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -22,8 +24,12 @@ function LoginForm() {
     console.log("Password:", formData.get('password'));
 
     try {
-      await handleLogin(formData);
-      setError(null); 
+      const result = await handleLogin(formData);
+      if (result.success) {
+        setError(null); 
+        router.push('/admin'); 
+        setError(result.message);  
+      }
     } catch (err) {
       setError(err.message); 
     }
