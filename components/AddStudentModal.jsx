@@ -20,6 +20,7 @@ export default function AddStudentModal({ isOpen, onClose, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    window.location.reload(); 
   };
 
   if (!isOpen) return null;
