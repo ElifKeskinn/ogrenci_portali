@@ -1,0 +1,76 @@
+a:hover {
+    font-weight: bold;
+}
+
+body {
+    background-color: yellow;
+}
+
+.navbar {
+    display: flex;
+    gap: 180px;
+    position: relative;
+    left: 400px;
+    list-style-type: none;
+    
+}
+
+a {
+    text-decoration: none;
+    
+}
+
+.girisbtn {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+.kayitbtn {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+} 
+
+input {
+    border-radius: 10px;
+    width: 320px;
+}
+
+.loginkismi {
+    display: flex;
+    gap: 5px;
+}
+
+.registerkismi {
+    display: flex;
+    gap: 5px;
+}
+
+@media (width <= 380px) {
+    .navbar {
+        display: flex;
+        gap: 30px;
+        position: relative;
+        left: 30px;
+    }
+}
+
+.loginkismi {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.registerkismi {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+input {
+    border-radius: 10px;
+     
+}
+
+button {
+    width: 328px;
+}
